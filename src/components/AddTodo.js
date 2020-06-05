@@ -1,5 +1,6 @@
 import React, { useState } from 'react'
 import { View, StyleSheet, TextInput, Button, Alert } from 'react-native'
+import { THEME } from '../theme'
 
 export const AddTodo = ({ onSubmit }) => {
   const [value, setValue] = useState('')
@@ -21,7 +22,7 @@ export const AddTodo = ({ onSubmit }) => {
         value={value}
         placeholder='Add task name...'
         autoCorrect={false}
-        autoCapitalize="none"
+        autoCapitalize='none'
       />
       <Button title='Add' onPress={pressHandler} />
     </View>
@@ -40,6 +41,6 @@ const styles = StyleSheet.create({
     borderStyle: 'solid',
     borderBottomWidth: 1,
     padding: 10,
-    borderBottomColor: '#3949ab',
+    borderBottomColor: THEME.MAIN_COLOR,
   },
 })

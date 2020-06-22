@@ -1,9 +1,11 @@
 import React, { useState } from 'react'
 import { StyleSheet, View, Button } from 'react-native'
+import { FontAwesome, AntDesign } from '@expo/vector-icons'
 
 import { AppTextBold } from '../components/ui/AppTextBold'
 import { THEME } from '../theme'
 import { AppCard } from '../components/ui/AppCard'
+import { AppButton } from '../components/ui/AppButton'
 import { AddModal } from '../components/AddModal'
 
 export const TodoScreen = ({ goBack, todo, onRemove, onSave }) => {
@@ -24,22 +26,23 @@ export const TodoScreen = ({ goBack, todo, onRemove, onSave }) => {
 
       <AppCard style={styles.card}>
         <AppTextBold style={styles.title}>{todo.title} </AppTextBold>
-        <Button title='Edit' onPress={() => setModal(true)}></Button>
+        <AppButton onPress={() => setModal(true)}>
+          <FontAwesome name='edit' size={20}></FontAwesome>
+        </AppButton>
       </AppCard>
       <View style={styles.buttons}>
         <View style={styles.button}>
-          <Button
-            title='Back'
-            color={THEME.GREY_COLOR}
-            onPress={goBack}
-          ></Button>
+          <AppButton color={THEME.GREY_COLOR} onPress={goBack}>
+            <AntDesign name='back' size={20} color='#fff'></AntDesign>
+          </AppButton>
         </View>
         <View style={styles.button}>
-          <Button
-            title='Delete'
+          <AppButton
             color={THEME.DANGER_COLOR}
             onPress={() => onRemove(todo.id)}
-          ></Button>
+          >
+            <FontAwesome name='remove' size={20}></FontAwesome>
+          </AppButton>
         </View>
       </View>
     </View>

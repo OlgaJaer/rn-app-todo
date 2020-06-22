@@ -1,5 +1,14 @@
 import React, { useState } from 'react'
-import { View, StyleSheet, TextInput, Button, Alert } from 'react-native'
+import {
+  View,
+  StyleSheet,
+  TextInput,
+  Button,
+  Alert,
+  Keyboard,
+} from 'react-native'
+import { AntDesign } from '@expo/vector-icons'
+
 import { THEME } from '../theme'
 
 export const AddTodo = ({ onSubmit }) => {
@@ -9,6 +18,7 @@ export const AddTodo = ({ onSubmit }) => {
     if (value.trim()) {
       onSubmit(value)
       setValue('')
+      Keyboard.dismiss() // скрыть клавиатуру
     } else {
       Alert.alert('Name of tast can not be empty')
     }
@@ -24,7 +34,15 @@ export const AddTodo = ({ onSubmit }) => {
         autoCorrect={false}
         autoCapitalize='none'
       />
-      <Button title='Add' onPress={pressHandler} />
+      <AntDesign.Button
+        onPress={pressHandler}
+        name='pluscircleo'
+        // size={24}
+        // color='black'
+      >
+        Add
+      </AntDesign.Button>
+      {/* <Button title='Add' onPress={pressHandler} /> */}
     </View>
   )
 }

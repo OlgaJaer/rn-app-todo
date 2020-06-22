@@ -1,6 +1,9 @@
 import React, { useState } from 'react'
 import { View, StyleSheet, Button, TextInput, Modal, Alert } from 'react-native'
+import { FontAwesome, MaterialIcons } from '@expo/vector-icons'
+
 import { THEME } from '../theme'
+import { AppButton } from './ui/AppButton'
 
 export const AddModal = ({ visible, onCancel, value, onSave }) => {
   const [title, setTitle] = useState(value)
@@ -29,12 +32,12 @@ export const AddModal = ({ visible, onCancel, value, onSave }) => {
           maxLength={64}
         />
         <View style={styles.bottoms}>
-          <Button
-            title='Cancel'
-            onPress={onCancel}
-            color={THEME.DANGER_COLOR}
-          ></Button>
-          <Button title='Save' onPress={saveHandler}></Button>
+          <AppButton onPress={onCancel} color={THEME.DANGER_COLOR}>
+            <MaterialIcons name='cancel' size={20}></MaterialIcons>
+          </AppButton>
+          <AppButton onPress={saveHandler}>
+            <FontAwesome name='save' size={20}></FontAwesome>
+          </AppButton>
         </View>
       </View>
     </Modal>

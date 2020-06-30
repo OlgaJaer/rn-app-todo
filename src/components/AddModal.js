@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import { View, StyleSheet, Button, TextInput, Modal, Alert } from 'react-native'
+import { View, StyleSheet, TextInput, Modal, Alert } from 'react-native'
 import { FontAwesome, MaterialIcons } from '@expo/vector-icons'
 
 import { THEME } from '../theme'
@@ -19,6 +19,11 @@ export const AddModal = ({ visible, onCancel, value, onSave }) => {
     }
   }
 
+  const cancelHandler = () => {
+    setTitle(value)
+    onCancel()
+  }
+
   return (
     <Modal visible={visible} animationType='slide' transparent={false}>
       <View style={styles.wrap}>
@@ -32,7 +37,7 @@ export const AddModal = ({ visible, onCancel, value, onSave }) => {
           maxLength={64}
         />
         <View style={styles.bottoms}>
-          <AppButton onPress={onCancel} color={THEME.DANGER_COLOR}>
+          <AppButton onPress={cancelHandler} color={THEME.DANGER_COLOR}>
             <MaterialIcons name='cancel' size={20}></MaterialIcons>
           </AppButton>
           <AppButton onPress={saveHandler}>

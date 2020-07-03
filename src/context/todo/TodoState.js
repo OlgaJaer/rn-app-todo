@@ -52,8 +52,15 @@ export const TodoState = ({ children }) => {
         {
           text: 'Delete',
           style: 'destructive',
-          onPress: () => {
+          onPress: async () => {
             changeScreen(null)
+            await fetch(
+              `https://rn-todo-app-3c548.firebaseio.com/todos/${id}.json`,
+              {
+                method: 'DELETE',
+                headers: { 'Content-Type': 'application/json' },
+              }
+            )
             dispatch({ type: REMOVE_TODO, id })
           },
         },
@@ -85,7 +92,20 @@ export const TodoState = ({ children }) => {
     }
   }
 
-  const updateTodo = (id, title) => dispatch({ type: UPDATE_TODO, id, title })
+  const updateTodo = async (id, title) => {
+    clearError()
+    try {
+      await fetch(`https://rn-todo-app-3c548.firebaseio.com/todos/${id}.json`, {
+        method: 'PATCH',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ title }),
+      })
+      dispatch({ type: UPDATE_TODO, id, title })
+    } catch (error) {
+      showError('Something go wrong...')
+      console.log(error)
+    }
+  }
 
   const showLoader = () => dispatch({ type: SHOW_LOADER })
 

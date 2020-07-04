@@ -9,18 +9,7 @@ import { TodoContext } from './context/todo/todoContext'
 import { ScreenContext } from './context/screen/screenContext'
 
 export const MainLayout = () => {
-  //   const { todos, addTodo, removeTodo, updateTodo } = useContext(TodoContext)
   const { todoId } = useContext(ScreenContext)
-
-  //const [todoId, setTodoId] = useState(null)
-  //   const [todos, setTodos] = useState([])
-
-  //   let content = <MainScreen />
-
-  //   if (todoId) {
-  //     const selectedTodo = todos.find((todo) => todo.id === todoId)
-  //     content = <TodoScreen />
-  //   }
 
   return (
     <View style={styles.wrapper}>
